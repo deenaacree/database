@@ -1,8 +1,8 @@
 <?php
 
 $server   = "localhost";
-$database = "weather_data";
-$username = "root";
+$database = "deenaacr_weather_data";
+$username = "";
 $password = "";
 
 $conn = mysqli_connect($server, $username, $password, $database);
