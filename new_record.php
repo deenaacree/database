@@ -14,7 +14,7 @@
 
 <h1>Weather Data: Enter New Data</h1>
 
-<p class="middle"><a href="weather_update.php">View full weather listing</a></p>
+<p class="middle"><a href="weather_update.php">View full Weatherbase data listings</a></p>
 
 <div id="weather">
 
