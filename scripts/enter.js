@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 $("#response").hide();
 
-$("#sockform").on("submit", function(e) {
+$("#weatherform").on("submit", function(e) {
     e.preventDefault();
 
 	$.ajax({
@@ -10,7 +10,7 @@ $("#sockform").on("submit", function(e) {
 		type: "POST",
 		data: $(this).serialize(),
 		success: function(html) {
-            $("#socks").hide();
+            $("#weather").hide();
             $("#response").show();
         },
         error: function (jqXHR, status, err) {

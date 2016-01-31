@@ -8,7 +8,9 @@ if ( isset($_POST['id']) && isset($_POST['name']) ) {
     // sanitizeMySQL() is a custom function, written below
     // these values came from the form
     $id = sanitizeMySQL($conn, $_POST['id']);
-    $date = sanitizeMySQL($conn, $_POST['date']);
+    $month = sanitizeMySQL($conn, $_POST['month']);
+    $day = sanitizeMySQL($conn, $_POST['day']);
+    $year = sanitizeMySQL($conn, $_POST['year']);
     $location = sanitizeMySQL($conn, $_POST['location']);
     $temperature_high = sanitizeMySQL($conn, $_POST['temperature_high']);
     $temperature_low = sanitizeMySQL($conn, $_POST['temperature_low']);
@@ -57,8 +59,10 @@ if ( isset($_POST['id']) && isset($_POST['name']) ) {
         // note that 7 letters in 'sssidsi' MUST MATCH data types in table
         // Type specification chars:
         // i - integer, s - string , d - double (decimal), b - blob
-        mysqli_stmt_bind_param($stmt, 'ssssssssssssssi',
-        $date,
+        mysqli_stmt_bind_param($stmt, 'siisssssssssssssi',
+        $month,
+        $day,
+        $year,
         $location,
         $temperature_high,
         $temperature_low,

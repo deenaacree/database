@@ -1,7 +1,7 @@
 #container {
 	max-width: 1000px;
 	margin: 30px auto;
-    background: #cbf7bc;
+    background: #B9F9FF;
     padding: 3em;
 }
 
@@ -18,13 +18,13 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     empty-cells: show;
-    border: 1px solid #cbcbcb;
-    background: #e7ffdf;
+    border: 1px solid #B9FFEA;
+    background: #B9F9FF;
     margin: 20px auto;
 }
 
 td, th {
-    border-left: 1px solid #cbcbcb; /* inner column border */
+    border-left: 1px solid #65C4E8; /* inner column border */
     border-width: 0 0 0 1px;
     font-size: inherit;
     margin: 0;
@@ -33,20 +33,20 @@ td, th {
 }
 
 th {
-    background: #cc90c0;
+    background: #C5DCFF;
     text-align: left;
     vertical-align: bottom;
 }
 
 /* striping every other row */
 tr:nth-child(2n-1) td {
-    background: #f2f2f2;
+    background: #C8FFD2;
 }
 
 /* HORIZONTAL BORDERS ONLY - overrides previous */
 td, th {
     border-width: 0 0 1px 0;
-    border-bottom: 1px solid #cbcbcb;
+    border-bottom: 1px solid #65C4E8;
 }
 
 /* media queries */

@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
 // if delete
-$("#socksdelete").on("submit", function(e) {
+$("#weatherdelete").on("submit", function(e) {
     e.preventDefault();
 
     // get the value of the radio button
-    var destroy = $('input[name=destroy]:checked', '#socksdelete').val();
+    var destroy = $('input[name=destroy]:checked', '#weatherdelete').val();
     // uncheck both radio buttons
     yes.checked = false;
     no.checked = false;
@@ -16,7 +16,7 @@ $("#socksdelete").on("submit", function(e) {
 
     if (destroy !== "yes") {
         // replace form with paragraph
-        $( "#inner_content" ).html("<p class='announce'>The record was not deleted.</p>");
+        $( "#inner_content" ).html("<p class='announce'>The listing was not deleted.</p>");
     } else {
         var dataString = 'id=' + id;
 
@@ -25,7 +25,7 @@ $("#socksdelete").on("submit", function(e) {
     		type: "POST",
     		data: dataString,
     		success: function() {
-                $( "#inner_content" ).html("<p class='announce'>The record has been deleted.</p>");
+                $( "#inner_content" ).html("<p class='announce'>The listing has been deleted.</p>");
                 console.log("Success!");
             },
             error: function (jqXHR, status, err) {
@@ -36,7 +36,7 @@ $("#socksdelete").on("submit", function(e) {
 });
 
 // if update
-$("#sockupdate").on("submit", function(e) {
+$("#weatherupdate").on("submit", function(e) {
 
 	$.ajax({
 		url:  "update.php",

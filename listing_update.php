@@ -1,14 +1,14 @@
 <?php include 'database.php'; ?>
 <?php
 	$query = "SELECT * FROM weather ORDER BY name";
-	$socks = mysqli_query($conn, $query);
+	$weather = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title> Sock Market Inventory </title>
+    <title> Weatherbase Data </title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/table.css">
 </head>
@@ -27,7 +27,9 @@
 <table>
     <tr>
         <th>Select</th>
-        <th>Date</th>
+        <th>Month</th>
+				<th>Day</th>
+				<th>Year</th>
         <th>Location</th>
 				<th>High Temperature</th>
         <th>Low Temperature</th>
@@ -51,20 +53,22 @@
     <td><input type="radio" name="id" id="<?php echo $row['id']; ?>" value="<?php echo $row['id']; ?>"></td>
 	<!-- notice how, above, the database record id becomes
 		 the id and value of the radio button -->
-		<td><?php echo stripslashes $row['date']; ?></td>
-    <td><?php echo $row['location']; ?></td>
-    <td><?php echo $row['temperature_high']; ?></td>
-    <td><?php echo $row['temperature_low']; ?></td>
-    <td><?php echo $row['conditions']; ?></td>
-    <td><?php echo $row['clouds']; ?></td>
-		<td><?php echo $row['humidity']; ?></td>
-		<td><?php echo $row['rainfall']; ?></td>
-		<td><?php echo $row['sunrise']; ?></td>
-		<td><?php echo $row['sunset']; ?></td>
-		<td><?php echo $row['wind']; ?></td>
-		<td><?php echo $row['pressure']; ?></td>
-		<td><?php echo $row['visibility']; ?></td>
-		<td><?php echo $row['dew_point']; ?></td>
+		<td><?php echo stripslashes $row['month']; ?></td>
+		<td><?php echo stripslashes $row['day']; ?></td>
+		<td><?php echo stripslashes $row['year']; ?></td>
+    <td><?php echo stripslashes $row['location']; ?></td>
+    <td><?php echo stripslashes $row['temperature_high']; ?></td>
+    <td><?php echo stripslashes $row['temperature_low']; ?></td>
+    <td><?php echo stripslashes $row['conditions']; ?></td>
+    <td><?php echo stripslashes $row['clouds']; ?></td>
+		<td><?php echo stripslashes $row['humidity']; ?></td>
+		<td><?php echo stripslashes $row['rainfall']; ?></td>
+		<td><?php echo stripslashes $row['sunrise']; ?></td>
+		<td><?php echo stripslashes $row['sunset']; ?></td>
+		<td><?php echo stripslashes $row['wind']; ?></td>
+		<td><?php echo stripslashes $row['pressure']; ?></td>
+		<td><?php echo stripslashes $row['visibility']; ?></td>
+		<td><?php echo stripslashes $row['dew_point']; ?></td>
 </tr>
 
 <?php endwhile;  ?>

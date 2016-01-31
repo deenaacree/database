@@ -1,7 +1,7 @@
 <?php include 'database.php'; ?>
 <?php
 	$query = "SELECT * FROM weather ORDER BY date";
-	$socks = mysqli_query($conn, $query);
+	$weather = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>
@@ -20,11 +20,13 @@
 
 <h1>Weather Data Listings</h1>
 
-<p class="middle">This page only lists the data.</p>
+<p class="middle">This page lists only the Weatherbase Project's data.</p>
 
 <table>
     <tr>
-        <th>Date</th>
+        <th>Month</th>
+				<th>Day</th>
+				<th>Year</th>
         <th>Location</th>
         <th>High Temperature</th>
         <th>Low Temperature</th>
@@ -44,7 +46,9 @@
 <?php while($row = mysqli_fetch_assoc($weather)) :  ?>
 
 <tr>
-    <td><?php echo $row['date']; ?></td>
+    <td><?php echo $row['month']; ?></td>
+		<td><?php echo $row['day']; ?></td>
+		<td><?php echo $row['year']; ?></td>
     <td><?php echo $row['location']; ?></td>
     <td><?php echo $row['temperature_high']; ?></td>
     <td><?php echo $row['temperature_low']; ?></td>
@@ -67,6 +71,8 @@
 </table>
 
 <p class="middle"><a href="new_record.php">Add weather data</a>: Open the weather data entry form.</p>
+
+<p class="middle"><a href="https://github.com/deenaacree/database">View the Github Repo for this page</a></p>
 
 </div> <!-- close container -->
 </body>

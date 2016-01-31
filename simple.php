@@ -6,25 +6,37 @@
 if (isset($_POST['name']) && isset($_POST['style'])) {
 
     // sanitizeMySQL() is a custom function, written below
-    $name = sanitizeMySQL($conn, $_POST['name']);
-    $style = sanitizeMySQL($conn, $_POST['style']);
-    $color = sanitizeMySQL($conn, $_POST['color']);
-    $quantity = sanitizeMySQL($conn, $_POST['quantity']);
-    $price = sanitizeMySQL($conn, $_POST['price']);
+    $id = sanitizeMySQL($conn, $_POST['id']);
+    $month = sanitizeMySQL($conn, $_POST['month']);
+    $day = sanitizeMySQL($conn, $_POST['day']);
+    $year = sanitizeMySQL($conn, $_POST['year']);
+    $location = sanitizeMySQL($conn, $_POST['location']);
+    $temperature_high = sanitizeMySQL($conn, $_POST['temperature_high']);
+    $temperature_low = sanitizeMySQL($conn, $_POST['temperature_low']);
+    $conditions = sanitizeMySQL($conn, $_POST['conditions']);
+    $clouds = sanitizeMySQL($conn, $_POST['clouds']);
+    $humidity = sanitizeMySQL($conn, $_POST['humidity']);
+    $rainfall = sanitizeMySQL($conn, $_POST['rainfall']);
+    $sunrise = sanitizeMySQL($conn, $_POST['sunrise']);
+    $sunset = sanitizeMySQL($conn, $_POST['sunset']);
+    $wind = sanitizeMySQL($conn, $_POST['wind']);
+    $pressure = sanitizeMySQL($conn, $_POST['pressure']);
+    $visibility = sanitizeMySQL($conn, $_POST['visibility']);
+    $dew_point = sanitizeMySQL($conn, $_POST['dew_point']);
 
     // create a PHP timestamp
     date_default_timezone_set('America/New_York');
     $date = date('m-d-Y', time());
 
-    $query = "INSERT INTO socks (name, style, color, quantity, price, updated)
-    VALUES ('$name', '$style', '$color', '$quantity', '$price', '$date')";
+    $query = "INSERT INTO weather (month, day, year, location, temperature_high, temperature_low, conditions, clouds, humidity, rainfall, sunrise, sunset, wind, pressure, visibility, dew_point)
+    VALUES ('$month', '$day', '$year', '$location', '$temperature_high', '$temperature_low', '$conditions', '$clouds', '$humidity', '$rainfall', '$sunrise', '$sunset', '$wind', '$pressure',' '$visibility', $dew_point')";
 
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
     // will be returned to the .ajax success function
     if ($result) {
         echo "You entered: ";
-        echo $name . ", ". $style . ", ". $color . ", ". $quantity . ", ". $price;
+        echo $month . ", ". $day . ", ". $year . ", ". $location . ", ". $temperature_high . ", ". $temperature_low . ", ". $conditions . ", ". $clouds . ", ". $humidity . ", ". $rainfall . ", ". $sunrise . ", ".  $sunset . ", ". $wind . ", ". $pressure . ", ". $visibility . ", ". $dew_point;
     } else {
         echo "Something went wrong.";
     }

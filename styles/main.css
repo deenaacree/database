@@ -12,10 +12,10 @@ body {
 	line-height: 1.5em;
 }
 #container {
-	max-width: 800px;
-	margin: 30px auto;
-    background: #cbf7bc;
-    padding: 3em;
+	max-width: 1200px;
+	margin: 20px auto;
+    background: #B9F9FF;
+    padding: 2em;
 }
 h1 {
     text-align: center;
@@ -49,21 +49,21 @@ input {
 	text-align: center;
 }
 .announce {
-	background: #f2f2f2;
+	background: #8EFFDF;
 	padding: 20px 0;
 	text-align: center;
 	width: 90%;
 	margin: 2em auto;
-	border: 1px solid #cc90c0;
+	border: 1px solid #81E8E8;
 }
 
 /* links */
 
 a {
-	color: #7d4676;
+	color: #475FE8;
 }
 a:hover {
-	color: #A85E9E;
+	color: #E86188;
 	text-decoration: none;
 }
 
@@ -88,8 +88,8 @@ input[type='submit'] {
 	cursor: pointer;
 	width: auto;
 	padding: 5px 25px;
-	background: #8c0672;
-	border: 1px solid #33842a;
+	background: #B7E8A8;
+	border: 1px solid #B9FFEA;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
@@ -103,7 +103,7 @@ input[type='submit'] {
 }
 input[type='submit']:hover,
 input[type='submit']:focus {
-	background: #690454;
+	background: #19FF6C;
 	-webkit-box-shadow: 0 0 1px rgba(0,0,0, .75);
 	-moz-box-shadow: 0 0 1px rgba(0,0,0, .75);
 	box-shadow: 0 0 1px rgba(0,0,0, .75);
@@ -117,7 +117,7 @@ input[type='submit']:focus {
 /* media queries */
 
 @media screen and ( max-width: 700px ) {
-	body { background: #cbf7bc; }
+	body { background: #A8D3E8; }
 	#container {
 		margin: 10px auto;
 		padding: 10px;

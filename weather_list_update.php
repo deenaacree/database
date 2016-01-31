@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title> Sock Market - Update </title>
+    <title> Weatherbase - Update </title>
     <link rel="stylesheet" href="css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script>
     <script src="js/update.js"></script>
@@ -13,7 +13,7 @@
 <body>
 <div id="container">
 
-<h1>Weather Listing: Update Existing Entry</h1>
+<h1>Weatherbase Listing: Update Existing Entry</h1>
 <!-- this page opens if you selected edit or delete
      in weather_edit.php and submitted the form
      and this page chooses which form to show you
@@ -66,11 +66,22 @@ if ( isset($_POST['choice']) ) {
         $id = sanitizeMySQL($conn, $_POST['id']);
         // these are simply written into the form on THIS page, below
         // and so I did not sanitize them
-        $name = $_POST['name'];
-        $style = $_POST['style'];
-        $color = $_POST['color'];
-        $quantity = $_POST['quantity'];
-        $price = $_POST['price'];
+        $month = $_POST['month']);
+        $day = $_POST['day']);
+        $year = $_POST['year']);
+        $location = $_POST['location']);
+        $temperature_high = $_POST['temperature_high']);
+        $temperature_low = $_POST['temperature_low']);
+        $conditions = $_POST['conditions']);
+        $clouds = $_POST['clouds']);
+        $humidity = $_POST['humidity']);
+        $rainfall = $_POST['rainfall']);
+        $sunrise = $_POST['sunrise']);
+        $sunset = $_POST['sunset']);
+        $wind = $_POST['wind']);
+        $pressure = $_POST['pressure']);
+        $visibility = $_POST['visibility']);
+        $dew_point = $_POST['dew_point']);
 ?>
         <!-- switch from PHP to HTML
              show entire form with the PHP values filled in ...
@@ -87,37 +98,101 @@ if ( isset($_POST['choice']) ) {
             <!-- retain id to be passed to JS file -->
             <input type="hidden" name="id" value="<?php echo $id ?>">
 
-            <label for="name">Name </label>
-            <input type="text" name="name" id="name" maxlength="20" required value="<?php echo stripslashes($name) ?>">
-            <!-- previously any single quote was escaped with a backslash
-                 we use stripslashes() to get rid of the slashes -->
+            <label for="month">Month</label>
+            <select name="month" id="month" required value="<?php echo stripslashes($month) ?>">
+              <option value=""></option>
+              <option value="january">January</option>
+              <option value="february">February</option>
+              <option value="march">March</option>
+              <option value="april">April</option>
+              <option value="may">May</option>
+              <option value="june">June</option>
+              <option value="july">July</option>
+              <option value="august">August</option>
+              <option value="september">September</option>
+              <option value="october">October</option>
+              <option value="november">November</option>
+              <option value="december">December</option>
+            </select>
 
-            <label for="style">Style </label>
-            <select name="style" id="style" required>
+            <label for="day">Day</label>
+            <input type="number" name="day" id="day" max="31" required value="<?php echo stripslashes($day) ?>">
+
+            <label for="year">Year</label>
+            <input type="number" name="year" id="year" max="2020" requiredvalue="<?php echo stripslashes($year) ?>">
+
+            <label for="location">Location </label>
+            <select name="location" id="location" required>
             <!-- each option requires this test to see if value matches:
                  if value of $style == (some value), then write "selected"
                  into the option tag - only one will be selected
                  -->
-                 <option value="" <?php echo $style == "" ? " selected" : ""; ?>></option>
-                 <option value="ankle" <?php echo $style == "ankle" ? " selected" : ""; ?>>ankle</option>
-                 <option value="knee-high" <?php echo $style == "knee-high" ? " selected" : ""; ?>>knee-high</option>
-                 <option value="mini" <?php echo $style == "mini" ? " selected" : ""; ?>>mini</option>
-                 <option value="other" <?php echo $style == "other" ? " selected" : ""; ?>>other</option>
+                 <option value="" <?php echo $location == "" ? " selected" : ""; ?>></option>
+                 <option value="gainesville" <?php echo $location == "gainesville" ? " selected" : ""; ?>>Gainesville</option>
+                 <option value="melrose" <?php echo $location == "melrose" ? " selected" : ""; ?>>Melrose</option>
+                 <option value="hawthorne" <?php echo $location == "hawthorne" ? " selected" : ""; ?>>Hawthorne</option>
+                 <option value="other" <?php echo $location == "other" ? " selected" : ""; ?>>Other</option>
              </select>
 
-             <label for="color">Color </label>
-             <input type="text" name="color" id="color" maxlength="20" required value="<?php echo $color ?>">
+             <label for="temperature_high">High Temperature </label>
+             <input type="number" name="temperature_high" id="temperature_high" max="999" required value="<?php echo $temperature_high ?>">
 
-             <label for="quantity">Quantity </label>
-             <input type="number" name="quantity" id="quantity" max="999" required value="<?php echo $quantity ?>">
+             <label for="temperature_low">Low Temperature </label>
+             <input type="number" name="temperature_low" id="temperature_low" max="999" required value="<?php echo $temperature_low ?>">
 
-             <label for="price">Unit Price </label>
-             <input type="number" name="price" id="price" max="99.99" step="0.01" required value="<?php echo $price ?>">
-             <!-- step="0.01" (above) allows decimal to be entered -->
+             <label for="conditions">Conditions</label>
+             <select name="conditions" id="conditions" required>
+             <!-- each option requires this test to see if value matches:
+                  if value of $style == (some value), then write "selected"
+                  into the option tag - only one will be selected
+                  -->
+                  <option value="" <?php echo $conditions == "" ? " selected" : ""; ?>></option>
+                  <option value="sunny" <?php echo $conditions == "sunny" ? " selected" : ""; ?>>sunny</option>
+                  <option value="cloudy" <?php echo $conditions == "cloudy" ? " selected" : ""; ?>>cloudy</option>
+                  <option value="raining" <?php echo $conditions == "raining" ? " selected" : ""; ?>>raining</option>
+                  <option value="snowing" <?php echo $conditions == "snowing" ? " selected" : ""; ?>>snowing</option>
+                  <option value="storming" <?php echo $conditions == "storming" ? " selected" : ""; ?>>storming</option>
+                  <option value="clear" <?php echo $conditions == "clear" ? " selected" : ""; ?>>clear</option>
+                  <option value="other" <?php echo $conditions == "other" ? " selected" : ""; ?>>other</option>
+              </select>
 
-         	<input type="submit" id="submit" value="Update Record">
+              <label for="clouds">Clouds</label>
+              <select name="clouds" id="clouds" required>
+              <!-- each option requires this test to see if value matches:
+                   if value of $style == (some value), then write "selected"
+                   into the option tag - only one will be selected
+                   -->
+                   <option value="" <?php echo $clouds == "" ? " selected" : ""; ?>></option>
+                   <option value="yes" <?php echo $clouds == "yes" ? " selected" : ""; ?>>Yes</option>
+                   <option value="no" <?php echo $clouds == "no" ? " selected" : ""; ?>>No</option>
+
+             <label for="humidity">Humidity</label>
+             <input type="number" name="humidity" id="humidity" max="999" required value="<?php echo $humidity ?>">
+
+             <label for="rainfall">Rainfall</label>
+             <input type="number" name="rainfall" id="rainfall" max="999.99" step="0.01" required value="<?php echo $rainfall ?>">
+
+             <label for="sunrise">Sunrise</label>
+             <input type="text" name="sunrise" id="sunrise" maxlength="20" required value="<?php echo $sunrise ?>">
+
+             <label for="sunset">Sunset</label>
+             <input type="text" name="sunset" id="sunset" maxlength="20" required value="<?php echo $sunset ?>">
+
+             <label for="wind">Wind Gusts</label>
+             <input type="text" name="wind" id="wind" maxlength="20" required value="<?php echo $wind ?>">
+
+             <label for="pressure">Pressure</label>
+             <input type="number" name="pressure" id="pressure" max="999.99" step="0.01" required value="<?php echo $pressure ?>">
+
+             <label for="wind">Visbility</label>
+             <input type="text" name="visibility" id="visibility" maxlength="20" required value="<?php echo $visibility ?>">
+
+             <label for="dew_point">Dew point</label>
+             <input type="number" name="dew_point" id="dew_point" max="999.99" step="0.01" required value="<?php echo $dew_point ?>">
+
+         	<input type="submit" id="submit" value="Update Listing">
          </form>
-     </div> <!-- close the socks div -->
+     </div> <!-- close the weather div -->
 
 <?php
     } // end of if ($choice = "update")
@@ -137,9 +212,11 @@ if ( isset($_POST['choice']) ) {
 
 <!-- below will print no matter what -->
 
-<p class="middle"><a href="inventory_update.php">View full inventory</a></p>
+<p class="middle"><a href="listing_update.php">View all weather data from the Weatherbase project</a></p>
 
-<p class="middle"><a href="enter_new_record.php">Add a new sock record</a></p>
+<p class="middle"><a href="new_record.php">Add more weather information for the Weatherbase project</a></p>
+
+<p class="middle"><a href="">View the Github Repo for this page</a></p>
 
 </div> <!-- close container -->
 </body>

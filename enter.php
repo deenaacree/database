@@ -28,8 +28,8 @@ if (isset($_POST['name']) && isset($_POST['style'])) {
 
     // the prepared statement - note: 6 question marks represent
     // 6 variables we will send to database separately
-    $query = "INSERT INTO weather (date, location, temperature_high, temperature_low, conditions, clouds, humidity, rainfall, sunrise, sunset, wind, pressure, visibility, dew_point)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO weather (month, day, year, location, temperature_high, temperature_low, conditions, clouds, humidity, rainfall, sunrise, sunset, wind, pressure, visibility, dew_point)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     // prepare the statement in db
     if ( $stmt = mysqli_prepare($conn, $query) ) {
@@ -38,8 +38,10 @@ if (isset($_POST['name']) && isset($_POST['style'])) {
         // note that 6 letters in 'sssids' MUST MATCH data types in table
         // Type specification chars:
         // i - integer, s - string , d - double (decimal), b - blob
-        mysqli_stmt_bind_param($stmt, 'ssssssssssssssi',
-        $date,
+        mysqli_stmt_bind_param($stmt, 'siisssssssssssssi',
+        $month,
+        $day,
+        $year,
         $location,
         $temperature_high,
         $temperature_low,

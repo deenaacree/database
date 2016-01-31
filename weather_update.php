@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title> Sock Market - Update </title>
+    <title> Weatherbase Project - Update </title>
     <link rel="stylesheet" href="styles/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script>
     <script src="scripts/update.js"></script>
@@ -41,14 +41,14 @@ if ( isset($_POST['choice']) ) {
 ?>
 <!-- start plain HTML -->
 
-        <form id="socksdelete" class="smallform" method="post"  action="listing.php" autocomplete="off">
+        <form id="weatherdelete" class="smallform" method="post"  action="listing.php" autocomplete="off">
             <p>Are you sure you want to DELETE this listing?</p>
 
             <p><label>
             <input type="radio" name="destroy" id="yes" value="yes"> Yes, delete this listing</label></p>
 
             <p><label>
-            <input type="radio" name="destroy" id="no" value="no"> No, do NOT delete it</label></p>
+            <input type="radio" name="destroy" id="no" value="no"> No, do NOT delete the listing</label></p>
 
             <!-- pass _id_ value to the next script -->
             <input type="hidden" name="id" id="id" value="<?php echo $id ?>">
@@ -66,7 +66,9 @@ if ( isset($_POST['choice']) ) {
         $id = sanitizeMySQL($conn, $_POST['id']);
         // these are simply written into the form on THIS page, below
         // and so I did not sanitize them
-        $date = $_POST['date']);
+        $month = $_POST['month']);
+        $day = $_POST['day']);
+        $year = $_POST['year']);
         $location = $_POST['location']);
         $temperature_high = $_POST['temperature_high']);
         $temperature_low = $_POST['temperature_low']);
@@ -96,10 +98,28 @@ if ( isset($_POST['choice']) ) {
             <!-- retain id to be passed to JS file -->
             <input type="hidden" name="id" value="<?php echo $id ?>">
 
-            <label for="date">Date </label>
-            <input type="text" name="name" id="name" maxlength="20" required value="<?php echo stripslashes($date) ?>">
-            <!-- previously any single quote was escaped with a backslash
-                 we use stripslashes() to get rid of the slashes -->
+            <label for="month">Month</label>
+            <select name="month" id="month" required value="<?php echo stripslashes($month) ?>">
+              <option value=""></option>
+              <option value="january">January</option>
+              <option value="february">February</option>
+              <option value="march">March</option>
+              <option value="april">April</option>
+              <option value="may">May</option>
+              <option value="june">June</option>
+              <option value="july">July</option>
+              <option value="august">August</option>
+              <option value="september">September</option>
+              <option value="october">October</option>
+              <option value="november">November</option>
+              <option value="december">December</option>
+            </select>
+
+            <label for="day">Day</label>
+            <input type="number" name="day" id="day" max="31" required value="<?php echo stripslashes($day) ?>">
+
+            <label for="year">Year</label>
+            <input type="number" name="year" id="year" max="2020" requiredvalue="<?php echo stripslashes($year) ?>">
 
             <label for="location">Location </label>
             <select name="location" id="location" required>
@@ -127,16 +147,16 @@ if ( isset($_POST['choice']) ) {
                   into the option tag - only one will be selected
                   -->
                   <option value="" <?php echo $conditions == "" ? " selected" : ""; ?>></option>
-                  <option value="sunny" <?php echo $conditions == "gainesville" ? " selected" : ""; ?>>sunny</option>
-                  <option value="cloudy" <?php echo $conditions == "melrose" ? " selected" : ""; ?>>cloudy</option>
-                  <option value="raining" <?php echo $conditions == "hawthorne" ? " selected" : ""; ?>>raining</option>
-                  <option value="snowing" <?php echo $conditions == "hawthorne" ? " selected" : ""; ?>>snowing</option>
-                  <option value="storming" <?php echo $conditions == "hawthorne" ? " selected" : ""; ?>>storming</option>
-                  <option value="clear" <?php echo $conditions == "hawthorne" ? " selected" : ""; ?>>clear</option>
+                  <option value="sunny" <?php echo $conditions == "sunny" ? " selected" : ""; ?>>sunny</option>
+                  <option value="cloudy" <?php echo $conditions == "cloudy" ? " selected" : ""; ?>>cloudy</option>
+                  <option value="raining" <?php echo $conditions == "raining" ? " selected" : ""; ?>>raining</option>
+                  <option value="snowing" <?php echo $conditions == "snowing" ? " selected" : ""; ?>>snowing</option>
+                  <option value="storming" <?php echo $conditions == "storming" ? " selected" : ""; ?>>storming</option>
+                  <option value="clear" <?php echo $conditions == "clear" ? " selected" : ""; ?>>clear</option>
                   <option value="other" <?php echo $conditions == "other" ? " selected" : ""; ?>>other</option>
               </select>
 
-              <label for="clouds">Conditions</label>
+              <label for="clouds">Clouds</label>
               <select name="clouds" id="clouds" required>
               <!-- each option requires this test to see if value matches:
                    if value of $style == (some value), then write "selected"
@@ -169,7 +189,6 @@ if ( isset($_POST['choice']) ) {
 
              <label for="dew_point">Dew point</label>
              <input type="number" name="dew_point" id="dew_point" max="999.99" step="0.01" required value="<?php echo $dew_point ?>">
-
 
          	<input type="submit" id="submit" value="Update Listing">
          </form>

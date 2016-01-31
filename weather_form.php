@@ -3,23 +3,41 @@
 <head>
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title> Weather Data Entry Form </title>
-    <link rel="stylesheet" href="css/main.css">
+    <title> Weatherbase Project — Entry Form </title>
+    <link rel="stylesheet" href="styles/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script>
-    <script src="js/simple.js"></script>
+    <script src="scripts/simple.js"></script>
 </head>
 
 <body>
 <div id="container">
 
-<h1>Weather Data</h1>
+<h1>Weatherbase Data</h1>
 
 <div id="weather">
 
-  <label for="date">Date </label>
-  <input type="text" name="name" id="name" maxlength="20" required value="<?php echo stripslashes($date) ?>">
-  <!-- previously any single quote was escaped with a backslash
-       we use stripslashes() to get rid of the slashes -->
+  <label for="month">Month</label>
+  <select name="month" id="month" required value="<?php echo stripslashes($month) ?>">
+    <option value=""></option>
+    <option value="january">January</option>
+    <option value="february">February</option>
+    <option value="march">March</option>
+    <option value="april">April</option>
+    <option value="may">May</option>
+    <option value="june">June</option>
+    <option value="july">July</option>
+    <option value="august">August</option>
+    <option value="september">September</option>
+    <option value="october">October</option>
+    <option value="november">November</option>
+    <option value="december">December</option>
+  </select>
+
+  <label for="day">Day</label>
+  <input type="number" name="day" id="day" max="31" required value="<?php echo stripslashes($day) ?>">
+
+  <label for="year">Year</label>
+  <input type="number" name="year" id="year" max="2020" requiredvalue="<?php echo stripslashes($year) ?>">
 
   <label for="location">Location </label>
   <select name="location" id="location" required>
@@ -42,26 +60,18 @@
 
    <label for="conditions">Conditions</label>
    <select name="conditions" id="conditions" required>
-   <!-- each option requires this test to see if value matches:
-        if value of $style == (some value), then write "selected"
-        into the option tag - only one will be selected
-        -->
         <option value="" <?php echo $conditions == "" ? " selected" : ""; ?>></option>
-        <option value="sunny" <?php echo $conditions == "gainesville" ? " selected" : ""; ?>>sunny</option>
-        <option value="cloudy" <?php echo $conditions == "melrose" ? " selected" : ""; ?>>cloudy</option>
-        <option value="raining" <?php echo $conditions == "hawthorne" ? " selected" : ""; ?>>raining</option>
-        <option value="snowing" <?php echo $conditions == "hawthorne" ? " selected" : ""; ?>>snowing</option>
-        <option value="storming" <?php echo $conditions == "hawthorne" ? " selected" : ""; ?>>storming</option>
-        <option value="clear" <?php echo $conditions == "hawthorne" ? " selected" : ""; ?>>clear</option>
+        <option value="sunny" <?php echo $conditions == "sunny" ? " selected" : ""; ?>>sunny</option>
+        <option value="cloudy" <?php echo $conditions == "cloudy" ? " selected" : ""; ?>>cloudy</option>
+        <option value="raining" <?php echo $conditions == "raining" ? " selected" : ""; ?>>raining</option>
+        <option value="snowing" <?php echo $conditions == "snowing" ? " selected" : ""; ?>>snowing</option>
+        <option value="storming" <?php echo $conditions == "storming" ? " selected" : ""; ?>>storming</option>
+        <option value="clear" <?php echo $conditions == "clear" ? " selected" : ""; ?>>clear</option>
         <option value="other" <?php echo $conditions == "other" ? " selected" : ""; ?>>other</option>
     </select>
 
-    <label for="clouds">Conditions</label>
+    <label for="clouds">Clouds</label>
     <select name="clouds" id="clouds" required>
-    <!-- each option requires this test to see if value matches:
-         if value of $style == (some value), then write "selected"
-         into the option tag - only one will be selected
-         -->
          <option value="" <?php echo $clouds == "" ? " selected" : ""; ?>></option>
          <option value="yes" <?php echo $clouds == "yes" ? " selected" : ""; ?>>Yes</option>
          <option value="no" <?php echo $clouds == "no" ? " selected" : ""; ?>>No</option>
@@ -96,6 +106,8 @@
   </div> <!-- close the div -->
 
 </div>
+
+<p class="middle"><a href="https://github.com/deenaacree/database">View the Github Repo for this page</a></p>
 
 </div> <!-- close container -->
 </body>
