@@ -1,7 +1,7 @@
 <?php
 
 $server   = "localhost";
-$database = "deenaacr_weather_data";
+$database = "weather_data";
 $username = "";
 $password = "";
 

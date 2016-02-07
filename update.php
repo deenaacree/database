@@ -3,28 +3,19 @@
 <?php
 // this scripts updates an exisiting record based on the id
 
-if ( isset($_POST['id']) && isset($_POST['name']) ) {
+if ( isset($_POST(['id'])) && isset($_POST(['name'])) ) {
 
     // sanitizeMySQL() is a custom function, written below
     // these values came from the form
-    $id = sanitizeMySQL($conn, $_POST['id']);
-    $month = sanitizeMySQL($conn, $_POST['month']);
-    $day = sanitizeMySQL($conn, $_POST['day']);
-    $year = sanitizeMySQL($conn, $_POST['year']);
-    $location = sanitizeMySQL($conn, $_POST['location']);
-    $temperature_high = sanitizeMySQL($conn, $_POST['temperature_high']);
-    $temperature_low = sanitizeMySQL($conn, $_POST['temperature_low']);
-    $conditions = sanitizeMySQL($conn, $_POST['conditions']);
-    $clouds = sanitizeMySQL($conn, $_POST['clouds']);
-    $humidity = sanitizeMySQL($conn, $_POST['humidity']);
-    $rainfall = sanitizeMySQL($conn, $_POST['rainfall']);
-    $sunrise = sanitizeMySQL($conn, $_POST['sunrise']);
-    $sunset = sanitizeMySQL($conn, $_POST['sunset']);
-    $wind = sanitizeMySQL($conn, $_POST['wind']);
-    $pressure = sanitizeMySQL($conn, $_POST['pressure']);
-    $visibility = sanitizeMySQL($conn, $_POST['visibility']);
-    $dew_point = sanitizeMySQL($conn, $_POST['dew_point']);
-
+    $id = sanitizeMySQL($conn, $_POST(['id']));
+    $month = sanitizeMySQL($conn, $_POST(['month']));
+    $day = sanitizeMySQL($conn, $_POST(['day']));
+    $year = sanitizeMySQL($conn, $_POST(['year']));
+    $location = sanitizeMySQL($conn, $_POST(['location']));
+    $temperature_high = sanitizeMySQL($conn, $_POST(['temperature_high']));
+    $temperature_low = sanitizeMySQL($conn, $_POST(['temperature_low']));
+    $conditions = sanitizeMySQL($conn, $_POST(['conditions']));
+    $rainfall = sanitizeMySQL($conn, $_POST(['rainfall']));
 
 
 
@@ -35,20 +26,14 @@ if ( isset($_POST['id']) && isset($_POST['name']) ) {
     // the prepared statement - note: question marks represent
     // variables we will send to database separately
     // we don't check which fields the user changed - we just update all
-    $query = "UPDATE weather SET date = ?,
+    $query = "UPDATE weather SET month = ?,
+        day = ?,
+        year = ?,
         location = ?,
         temperature_high = ?,
         temperature_low = ?,
         conditions = ?,
-        clouds = ?
-        humidity = ?
         rainfall = ?
-        sunrise = ?
-        sunset = ?
-        wind = ?
-        pressure = ?
-        visibility = ?
-        dew_point = ?
     WHERE id = ?";
 
     // prepare the statement in db
@@ -59,7 +44,7 @@ if ( isset($_POST['id']) && isset($_POST['name']) ) {
         // note that 7 letters in 'sssidsi' MUST MATCH data types in table
         // Type specification chars:
         // i - integer, s - string , d - double (decimal), b - blob
-        mysqli_stmt_bind_param($stmt, 'siisssssssssssssi',
+        mysqli_stmt_bind_param($stmt, 'ssssssssi',
         $month,
         $day,
         $year,
@@ -67,15 +52,7 @@ if ( isset($_POST['id']) && isset($_POST['name']) ) {
         $temperature_high,
         $temperature_low,
         $conditions,
-        $clouds,
-        $humidity,
         $rainfall,
-        $sunrise,
-        $sunset,
-        $wind,
-        $pressure,
-        $visibility,
-        $dew_point,
         $id
         );
 

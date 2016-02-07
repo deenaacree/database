@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
 // if delete
-$("#weatherdelete").on("submit", function(e) {
+$("#weather_delete").on("submit", function(e) {
     e.preventDefault();
 
     // get the value of the radio button
-    var destroy = $('input[name=destroy]:checked', '#weatherdelete').val();
+    var destroy = $('input[name=destroy]:checked', '#weather_delete').val();
     // uncheck both radio buttons
     yes.checked = false;
     no.checked = false;
@@ -36,7 +36,7 @@ $("#weatherdelete").on("submit", function(e) {
 });
 
 // if update
-$("#weatherupdate").on("submit", function(e) {
+$("#weather_update").on("submit", function(e) {
 
 	$.ajax({
 		url:  "update.php",

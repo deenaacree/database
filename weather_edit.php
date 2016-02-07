@@ -27,7 +27,7 @@ function sanitizeMySQL($conn, $var) {
 }
 
 // check if _id_ was sent here via POST ...
-if ( isset($_POST['id']) ) {
+if ( isset($_POST(['id'])) ) {
 ?>
 
     <!-- write into the HTML - table headings -->
@@ -40,21 +40,13 @@ if ( isset($_POST['id']) ) {
           <th>High Temperature</th>
           <th>Low Temperature</th>
           <th>Conditions</th>
-          <th>Clouds</th>
-          <th>Humidity</th>
           <th>Rainfall</th>
-          <th>Sunrise</th>
-          <th>Sunset</th>
-          <th>Wind</th>
-          <th>Pressure</th>
-          <th>Visibility</th>
-          <th>Dew Point</th>
         </tr>
         <tr>
 
 <?php
     // this calls the function above to make sure id is clean
-    $id = sanitizeMySQL($conn, $_POST['id']);
+    $id = sanitizeMySQL($conn, $_POST(['id']));
 
     // get the row indicated by the id
     $query = "SELECT * FROM weather WHERE id = ?";
@@ -68,7 +60,7 @@ if ( isset($_POST['id']) ) {
         mysqli_stmt_execute($stmt);
         // next line handles the row that was selected - all fields
         // it is "_result" because it is the result of the query
-        mysqli_stmt_bind_result($stmt, $id, $month, $day, $year, $location, $temperature_high, $temperature_low, $conditions, $clouds, $humidity, $rainfall, $sunrise, $sunset, $wind, $pressure, $visibility, $dew_point);
+        mysqli_stmt_bind_result($stmt, $id, $month, $day, $year, $location, $temperature_high, $temperature_low, $conditions, $rainfall);
 
         // handle the data we fetched with the SELECT statement ...
         while (mysqli_stmt_fetch($stmt)) {
@@ -78,21 +70,13 @@ if ( isset($_POST['id']) ) {
             // %s for string, %d for integer,
             // %f for decimal (floating point); %.02f limits 2 decimal places
             printf ("<td>%s</td>", stripslashes($month));
-            printf ("<td>%i</td>", stripslashes($day));
-            printf ("<td>%i</td>", stripslashes($year));
-            printf ("<td>%s</td>", $location);
-            printf ("<td>%s</td>", $temperature_high);
-            printf ("<td>%s</td>", $temperature_low);
-            printf ("<td>%s</td>", $conditions);
-            printf ("<td>%s</td>", $clouds);
-            printf ("<td>%s</td>", $humidity);
-            printf ("<td>%s</td>", $rainfall);
-            printf ("<td>%s</td>", $sunrise);
-            printf ("<td>%s</td>", $sunset);
-            printf ("<td>%s</td>", $wind);
-            printf ("<td>%s</td>", $pressure);
-            printf ("<td>%s</td>", $visibility);
-            printf ("<td>%s</td>", $dew_point);
+            printf ("<td>%s</td>", stripslashes($day));
+            printf ("<td>%s</td>", stripslashes($year));
+            printf ("<td>%s</td>", stripslashes($location));
+            printf ("<td>%s</td>", stripslashes($temperature_high));
+            printf ("<td>%s</td>", stripslashes($temperature_low));
+            printf ("<td>%s</td>", stripslashes($conditions));
+            printf ("<td>%s</td>", stripslashes($rainfall));
 
         } // end while-loop
 
@@ -106,7 +90,7 @@ if ( isset($_POST['id']) ) {
         </tr>
         </table>
 
-        <form id="weatheredit" class="smallform" method="post" action="weather_update.php" autocomplete="off">
+        <form id="weather_edit" class="smallform" method="post" action="weather_update.php" autocomplete="off">
             <p>Do you want to:
             <label>
             <input type="radio" name="choice" id="delete" value="delete" required> Delete this listing</label>
@@ -118,21 +102,13 @@ if ( isset($_POST['id']) ) {
             <!-- pass all values to the next script -->
             <input type="hidden" name="id" value="<?php echo $id ?>">
             <input type="hidden" name="month" value="<?php echo $month ?>">
-            <input type="hidden" name="day" value="<?php echo $date ?>">
+            <input type="hidden" name="day" value="<?php echo $day ?>">
             <input type="hidden" name="year" value="<?php echo $year ?>">
             <input type="hidden" name="location" value="<?php echo $location ?>">
-            <input type="hidden" name="temperature_high" value="<?php echo $temperature_high ?>">
-            <input type="hidden" name="temperature_low" value="<?php echo $temperature_low ?>">
+            <input type="hidden" name="temperature_high" value="<?php echo stripslashes($temperature_high) ?>">
+            <input type="hidden" name="temperature_low" value="<?php echo stripslashes($temperature_low) ?>">
             <input type="hidden" name="conditions" value="<?php echo $conditions ?>">
-            <input type="hidden" name="clouds" value="<?php echo $clouds ?>">
-            <input type="hidden" name="humidity" value="<?php echo $humidity ?>">
-            <input type="hidden" name="rainfall" value="<?php echo $rainfall ?>">
-            <input type="hidden" name="sunrise" value="<?php echo $sunrise ?>">
-            <input type="hidden" name="sunset" value="<?php echo $sunset ?>">
-            <input type="hidden" name="wind" value="<?php echo $wind ?>">
-            <input type="hidden" name="pressure" value="<?php echo $pressure ?>">
-            <input type="hidden" name="visibility" value="<?php echo $visibility ?>">
-            <input type="hidden" name="dew_point" value="<?php echo $dew_point ?>">
+            <input type="hidden" name="rainfall" value="<?php echo stripslashes($rainfall) ?>">
 
             <input type="submit" id="submit" value="Submit">
         </form>

@@ -3,10 +3,10 @@
 <?php
 // this script deletes an exisiting record based on the id
 
-if ( isset($_POST['id']) ) {
+if ( isset($_POST(['id'])) ) {
 
     // this id value came from the form
-    $id = sanitizeMySQL($conn, $_POST['id']);
+    $id = sanitizeMySQL($conn, $_POST(['id']));
 
     // the prepared statement - note: a question mark represents
     // a variable we will send to database separately

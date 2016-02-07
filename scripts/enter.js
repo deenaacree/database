@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 $("#response").hide();
 
-$("#weatherform").on("submit", function(e) {
+$("#weather_form").on("submit", function(e) {
     e.preventDefault();
 
 	$.ajax({

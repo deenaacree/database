@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 31, 2016 at 06:54 AM
+-- Generation Time: Feb 07, 2016 at 04:00 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -28,22 +28,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `weather` (
   `id` int(11) NOT NULL,
-  `month` mediumtext NOT NULL,
-  `day` int(3) NOT NULL,
-  `year` int(4) NOT NULL,
+  `month` text NOT NULL,
+  `day` text NOT NULL,
+  `year` text NOT NULL,
   `location` text NOT NULL,
-  `temperature_high` mediumtext NOT NULL,
-  `temperature_low` mediumtext NOT NULL,
-  `conditions` mediumtext NOT NULL,
-  `clouds` mediumtext NOT NULL,
-  `humidity` mediumtext NOT NULL,
-  `rainfall` mediumtext NOT NULL,
-  `sunrise` mediumtext NOT NULL,
-  `sunset` mediumtext NOT NULL,
-  `wind` mediumtext NOT NULL,
-  `pressure` mediumtext NOT NULL,
-  `visibility` mediumtext NOT NULL,
-  `dew_point` mediumtext NOT NULL
+  `temperature_high` text NOT NULL,
+  `temperature_low` text NOT NULL,
+  `conditions` text NOT NULL,
+  `rainfall` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

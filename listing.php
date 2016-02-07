@@ -1,6 +1,6 @@
 <?php include 'database.php'; ?>
 <?php
-	$query = "SELECT * FROM weather ORDER BY date";
+	$query = "SELECT * FROM weather ORDER BY id";
 	$weather = mysqli_query($conn, $query);
 ?>
 
@@ -20,7 +20,7 @@
 
 <h1>Weather Data Listings</h1>
 
-<p class="middle">This page lists only the Weatherbase Project's data.</p>
+<p class="middle">This page lists only The Weatherbase Project's data.</p>
 
 <table>
     <tr>
@@ -31,15 +31,7 @@
         <th>High Temperature</th>
         <th>Low Temperature</th>
         <th>Conditions</th>
-        <th>Clouds</th>
-				<th>Humidity</th>
 				<th>Rainfall</th>
-				<th>Sunrise</th>
-				<th>Sunset</th>
-				<th>Wind</th>
-				<th>Pressure</th>
-				<th>Visibility</th>
-				<th>Dew Point</th>
     </tr>
 <!-- begin PHP while-loop to display database query results
      with each row enclosed in LI tags -->
@@ -53,15 +45,7 @@
     <td><?php echo $row['temperature_high']; ?></td>
     <td><?php echo $row['temperature_low']; ?></td>
     <td><?php echo $row['conditions']; ?></td>
-    <td><?php echo $row['clouds']; ?></td>
-		<td><?php echo $row['humidity']; ?></td>
 		<td><?php echo $row['rainfall']; ?></td>
-		<td><?php echo $row['sunrise']; ?></td>
-		<td><?php echo $row['sunset']; ?></td>
-		<td><?php echo $row['wind']; ?></td>
-		<td><?php echo $row['pressure']; ?></td>
-		<td><?php echo $row['visibility']; ?></td>
-		<td><?php echo $row['dew_point']; ?></td>
 </tr>
 
 <?php endwhile;  ?>
